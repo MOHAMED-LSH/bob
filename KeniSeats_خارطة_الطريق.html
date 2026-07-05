@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>خارطة الطريق - مشروع KeniSeats (3 سنوات)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#10233F;
+    --navy-2:#1D3A63;
+    --navy-3:#2E5288;
+    --gold:#C9A24B;
+    --gold-soft:#E6C77E;
+    --ink:#1C2430;
+    --muted:#5B6472;
+    --bg:#EEF1F7;
+    --card:#FFFFFF;
+    --line:#E4E8EF;
+    --green:#1F7A5A;
+    --tint:#F5F8FD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);}
+  body{
+    font-family:'Tajawal','Cairo','Segoe UI',Tahoma,sans-serif;
+    color:var(--ink);
+    line-height:1.85;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    padding:28px 0;
+  }
+  .page{
+    width:210mm;
+    margin:0 auto;
+    background:var(--card);
+    box-shadow:0 24px 60px rgba(16,35,63,.18);
+    border-radius:14px;
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* ===== Header ===== */
+  .hero{
+    position:relative;
+    padding:36px 40px 32px;
+    background:
+      radial-gradient(1200px 400px at 88% -40%, rgba(201,162,75,.30), transparent 60%),
+      linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);
+    color:#fff;overflow:hidden;
+  }
+  .hero::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(520px 220px at 6% 130%, rgba(255,255,255,.08), transparent 60%);pointer-events:none;}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:2;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{
+    width:60px;height:60px;border-radius:16px;
+    background:linear-gradient(160deg,#fff,#dfe6f2);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:23px;
+    box-shadow:0 8px 20px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.6);font-family:'Cairo',sans-serif;
+  }
+  .brand-txt h1{font-size:21px;font-weight:800;}
+  .brand-txt span{font-size:12.5px;color:#c7d3e6;font-weight:500;}
+  .badge-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    padding:7px 15px;border-radius:999px;font-size:12px;font-weight:600;color:#eaf0fb;}
+  .hero h2{position:relative;z-index:2;margin-top:26px;font-size:29px;font-weight:800;line-height:1.5;}
+  .hero h2 .accent{color:var(--gold-soft);}
+  .hero p.lead{position:relative;z-index:2;margin-top:12px;max-width:660px;color:#d6deec;font-size:14px;}
+  .rule{height:4px;width:100%;background:linear-gradient(90deg,var(--gold) 0%, var(--gold-soft) 40%, transparent 100%);}
+
+  /* ===== Revenue growth strip ===== */
+  .growth{padding:24px 40px 6px;}
+  .growth-title{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:800;color:var(--navy);margin-bottom:14px;}
+  .growth-title .ic{width:20px;height:20px;color:var(--gold);}
+  .ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end;}
+  .step-rev{border-radius:13px;padding:14px 16px;color:#fff;position:relative;overflow:hidden;
+    background:linear-gradient(150deg,var(--navy),var(--navy-3));box-shadow:0 8px 18px rgba(16,35,63,.18);}
+  .step-rev.s1{min-height:96px;} .step-rev.s2{min-height:120px;} .step-rev.s3{min-height:146px;
+    background:linear-gradient(150deg,#12325c,#3a63a0);}
+  .step-rev .yr{font-size:12px;color:#c7d3e6;font-weight:600;}
+  .step-rev .amt{font-family:'Cairo',sans-serif;font-weight:800;font-size:19px;margin-top:6px;line-height:1.3;}
+  .step-rev .amt small{font-size:12px;color:var(--gold-soft);font-weight:700;display:block;}
+  .step-rev::after{content:"";position:absolute;bottom:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold-soft));}
+
+  /* ===== Timeline ===== */
+  .timeline{position:relative;padding:22px 40px 8px;}
+  .timeline::before{content:"";position:absolute;top:30px;bottom:40px;right:64px;width:3px;
+    background:linear-gradient(var(--gold),var(--navy-3));border-radius:2px;}
+  .milestone{position:relative;padding-right:64px;margin-bottom:22px;}
+  .marker{position:absolute;right:44px;top:26px;width:44px;height:44px;border-radius:50%;
+    background:linear-gradient(150deg,var(--navy),var(--navy-3));color:#fff;display:flex;align-items:center;
+    justify-content:center;font-family:'Cairo',sans-serif;font-weight:800;font-size:20px;z-index:2;
+    box-shadow:0 0 0 5px #fff,0 6px 16px rgba(16,35,63,.3);}
+  .ms-card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    box-shadow:0 6px 20px rgba(16,35,63,.07);break-inside:avoid;}
+  .ms-head{padding:16px 22px;color:#fff;position:relative;overflow:hidden;
+    background:radial-gradient(500px 200px at 90% -60%, rgba(201,162,75,.25), transparent 60%),
+      linear-gradient(135deg,var(--navy),var(--navy-2));}
+  .ms-head .yr{font-size:12.5px;color:var(--gold-soft);font-weight:700;letter-spacing:.3px;}
+  .ms-head h3{font-size:20px;font-weight:800;margin-top:2px;}
+  .ms-head .rev{position:absolute;left:20px;top:50%;transform:translateY(-50%);
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:12px;
+    padding:8px 14px;text-align:center;}
+  .ms-head .rev small{display:block;font-size:10.5px;color:#c7d3e6;font-weight:600;}
+  .ms-head .rev b{font-family:'Cairo',sans-serif;font-size:15px;color:#fff;font-weight:800;}
+  .ms-body{padding:6px 22px 16px;}
+  .block{padding:14px 0 4px;border-bottom:1px dashed #e9edf4;}
+  .block:last-child{border-bottom:none;}
+  .block h4{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;color:var(--navy);margin-bottom:9px;}
+  .block h4 .ic{width:20px;height:20px;flex:0 0 20px;}
+  .block h4 .ic.goal{color:var(--gold);}
+  .block h4 .ic.step{color:var(--navy-3);}
+  .block h4 .ic.res{color:var(--green);}
+
+  ul.tags{list-style:none;display:flex;flex-wrap:wrap;gap:8px;}
+  ul.tags li{background:var(--tint);border:1px solid var(--line);border-radius:9px;
+    padding:7px 12px;font-size:13px;font-weight:600;color:#33404f;position:relative;padding-right:26px;}
+  ul.tags li::before{content:"";position:absolute;right:10px;top:14px;width:8px;height:8px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 0 3px rgba(201,162,75,.18);}
+
+  ol.steps{list-style:none;counter-reset:st;display:grid;gap:7px;}
+  ol.steps li{counter-increment:st;position:relative;padding:6px 40px 6px 6px;font-size:13.5px;}
+  ol.steps li::before{content:counter(st);position:absolute;right:4px;top:5px;width:24px;height:24px;
+    border-radius:8px;background:linear-gradient(150deg,var(--navy),var(--navy-3));color:#fff;
+    font-family:'Cairo',sans-serif;font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;}
+
+  ul.results{list-style:none;display:grid;gap:6px;}
+  ul.results li{position:relative;padding:6px 26px 6px 6px;font-size:13.5px;}
+  ul.results li::before{content:"";position:absolute;right:6px;top:12px;width:10px;height:10px;border-radius:3px;
+    background:var(--green);box-shadow:0 0 0 3px rgba(31,122,90,.15);}
+  ul.results li b, ul.tags li b, ol.steps li b{color:var(--navy);font-weight:800;}
+  .hl{font-family:'Cairo',sans-serif;font-weight:800;color:var(--green);}
+
+  /* ===== Vision ===== */
+  .vision{margin:8px 40px 8px;border-radius:16px;padding:26px;color:#eef2f9;position:relative;overflow:hidden;
+    background:radial-gradient(600px 240px at 92% -20%, rgba(201,162,75,.32), transparent 60%),
+      linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 100%);break-inside:avoid;}
+  .vision h3{color:#fff;font-size:19px;font-weight:800;display:flex;align-items:center;gap:11px;margin-bottom:12px;}
+  .vision h3 .star{width:22px;height:22px;color:var(--gold-soft);}
+  .vision p{font-size:15px;color:#e2e9f4;line-height:2;}
+  .vision p strong{color:var(--gold-soft);}
+
+  .footer{display:flex;align-items:center;justify-content:space-between;padding:16px 40px 26px;
+    color:var(--muted);font-size:11.5px;border-top:1px solid var(--line);margin-top:12px;}
+  .footer .k{color:var(--navy);font-weight:700;}
+
+  @page{size:A4;margin:0;}
+  @media print{
+    body{padding:0;background:#fff;}
+    .page{box-shadow:none;border-radius:0;width:auto;}
+    .milestone{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="logo">KS</div>
+          <div class="brand-txt">
+            <h1>KeniSeats</h1>
+            <span>تنجيد وتخصيص مقاعد السيارات</span>
+          </div>
+        </div>
+        <div class="badge-pill">خطة استراتيجية · 3 سنوات</div>
+      </div>
+      <h2>خارطة الطريق <span class="accent">— مشروع KeniSeats</span></h2>
+      <p class="lead">رؤية واضحة على ثلاث سنوات لبناء الأساس، التوسع وتكوين فريق العمل، ثم الانتشار على المستوى الجهوي والوطني — مع أهداف وخطوات ونتائج منتظرة لكل مرحلة.</p>
+    </header>
+    <div class="rule"></div>
+
+    <!-- REVENUE GROWTH -->
+    <section class="growth">
+      <div class="growth-title">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>
+        نمو المداخيل الشهرية المتوقّع
+      </div>
+      <div class="ladder">
+        <div class="step-rev s1"><div class="yr">السنة الأولى</div><div class="amt">20,000 – 25,000<small>درهم / شهرياً</small></div></div>
+        <div class="step-rev s2"><div class="yr">السنة الثانية</div><div class="amt">40,000 – 50,000<small>درهم / شهرياً</small></div></div>
+        <div class="step-rev s3"><div class="yr">السنة الثالثة</div><div class="amt">80,000 – 100,000<small>درهم / شهرياً</small></div></div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <div class="timeline">
+
+      <!-- YEAR 1 -->
+      <section class="milestone">
+        <div class="marker">1</div>
+        <div class="ms-card">
+          <div class="ms-head">
+            <div class="yr">السنة الأولى</div>
+            <h3>بناء الأساس وتقوية المشروع</h3>
+            <div class="rev"><small>المداخيل المستهدفة</small><b>20 – 25 ألف درهم</b></div>
+          </div>
+          <div class="ms-body">
+            <div class="block">
+              <h4><svg class="ic goal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>الأهداف</h4>
+              <ul class="tags">
+                <li>تجهيز الورشة بجميع الآلات الأساسية</li>
+                <li>رفع الطاقة الإنتاجية</li>
+                <li>تحسين جودة الخدمة وتقليص مدة الإنجاز</li>
+                <li>بناء سمعة قوية محلياً</li>
+              </ul>
+            </div>
+            <div class="block">
+              <h4><svg class="ic step" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>الخطوات</h4>
+              <ol class="steps">
+                <li>شراء جميع المعدات والآلات المطلوبة.</li>
+                <li>تنظيم الورشة باش تكون الخدمة أكثر احترافية.</li>
+                <li>تطوير الحضور الرقمي عبر Google Maps، Instagram وFacebook.</li>
+                <li>إنشاء معرض أعمال احترافي للصور قبل وبعد الإنجاز.</li>
+                <li>توقيع شراكات مع الميكانيكيين، التوليرية، محلات غسل السيارات، وبائعي السيارات المستعملة.</li>
+                <li>الحفاظ على جودة الخدمة واحترام مواعيد التسليم.</li>
+              </ol>
+            </div>
+            <div class="block">
+              <h4><svg class="ic res" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>النتائج المنتظرة</h4>
+              <ul class="results">
+                <li>مضاعفة عدد الخدمات المنجزة.</li>
+                <li>تقليص مدة الإنجاز.</li>
+                <li>رفع المداخيل الشهرية من حوالي <span class="hl">8,000 درهم</span> إلى ما بين <span class="hl">20,000 و25,000 درهم</span>.</li>
+                <li>ترسيخ اسم <b>KeniSeats</b> كواحد من أفضل الورشات المتخصصة بمدينة القنيطرة.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- YEAR 2 -->
+      <section class="milestone">
+        <div class="marker">2</div>
+        <div class="ms-card">
+          <div class="ms-head">
+            <div class="yr">السنة الثانية</div>
+            <h3>التوسع وتكوين فريق عمل</h3>
+            <div class="rev"><small>المداخيل المستهدفة</small><b>40 – 50 ألف درهم</b></div>
+          </div>
+          <div class="ms-body">
+            <div class="block">
+              <h4><svg class="ic goal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>الأهداف</h4>
+              <ul class="tags">
+                <li>توسيع نشاط المشروع</li>
+                <li>تشغيل يد عاملة مؤهلة</li>
+                <li>إضافة خدمات جديدة أكثر احترافية</li>
+              </ul>
+            </div>
+            <div class="block">
+              <h4><svg class="ic step" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>الخطوات</h4>
+              <ol class="steps">
+                <li>توظيف عاملين أو ثلاثة وتكوينهم.</li>
+                <li>تطوير خدمات التخصيص الفاخر للمقصورات الداخلية.</li>
+                <li>استهداف شركات النقل وأصحاب الأساطيل.</li>
+                <li>توسيع خدمة مقاعد الدراجات النارية.</li>
+                <li>الاستثمار أكثر في التسويق وصناعة المحتوى.</li>
+                <li>تقوية شبكة الشركاء.</li>
+              </ol>
+            </div>
+            <div class="block">
+              <h4><svg class="ic res" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>النتائج المنتظرة</h4>
+              <ul class="results">
+                <li>زيادة عدد الزبناء بشكل ملحوظ.</li>
+                <li>خلق فرص شغل جديدة.</li>
+                <li>رفع المداخيل الشهرية إلى ما بين <span class="hl">40,000 و50,000 درهم</span>.</li>
+                <li>ترسيخ صورة <b>KeniSeats</b> كعلامة معروفة في المجال.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- YEAR 3 -->
+      <section class="milestone">
+        <div class="marker">3</div>
+        <div class="ms-card">
+          <div class="ms-head">
+            <div class="yr">السنة الثالثة</div>
+            <h3>التوسع على المستوى الجهوي</h3>
+            <div class="rev"><small>المداخيل المستهدفة</small><b>80 – 100 ألف درهم</b></div>
+          </div>
+          <div class="ms-body">
+            <div class="block">
+              <h4><svg class="ic goal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>الأهداف</h4>
+              <ul class="tags">
+                <li>تحويل KeniSeats إلى علامة مرجعية في مجال تجديد وتخصيص مقاعد السيارات</li>
+                <li>توسيع النشاط خارج مدينة القنيطرة</li>
+              </ul>
+            </div>
+            <div class="block">
+              <h4><svg class="ic step" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>الخطوات</h4>
+              <ol class="steps">
+                <li>افتتاح ورشة أو نقطة خدمة ثانية.</li>
+                <li>إطلاق موقع إلكتروني احترافي مع طلبات التسعير عبر الإنترنت.</li>
+                <li>المشاركة في المعارض والفعاليات الخاصة بالسيارات.</li>
+                <li>تطوير تصاميم حصرية خاصة بعلامة KeniSeats.</li>
+                <li>توسيع شبكة الشركاء في مدن أخرى.</li>
+              </ol>
+            </div>
+            <div class="block">
+              <h4><svg class="ic res" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg>النتائج المنتظرة</h4>
+              <ul class="results">
+                <li>استقبال زبناء من مختلف المدن.</li>
+                <li>تكوين فريق عمل متكامل.</li>
+                <li>تحقيق مداخيل شهرية تتراوح بين <span class="hl">80,000 و100,000 درهم</span>.</li>
+                <li>جعل <b>KeniSeats</b> من الأسماء الرائدة وطنياً في مجال تنجيد وتخصيص مقاعد السيارات.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VISION -->
+    <section class="vision">
+      <h3>
+        <svg class="star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3L22 9.3l-5 4.7 1.3 6.9L12 17.8 5.7 20.9 7 14 2 9.3l7.1-1z"/></svg>
+        الرؤية المستقبلية
+      </h3>
+      <p>الهدف ديالنا هو أن يُصبح <strong>KeniSeats</strong> علامة مغربية رائدة ومتخصصة في تجديد وتخصيص مقاعد السيارات، معروفة بالجودة، الإبداع، والاحترافية، وتساهم في خلق فرص الشغل وتقديم خدمات بمعايير عالية على الصعيد الوطني.</p>
+    </section>
+
+    <footer class="footer">
+      <div>خطة استراتيجية · <span class="k">KeniSeats</span></div>
+      <div>القنيطرة — المغرب</div>
+    </footer>
+  </div>
+</body>
+</html>
