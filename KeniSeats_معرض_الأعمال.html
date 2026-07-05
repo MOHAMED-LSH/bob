@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>معرض الأعمال المنجزة | KeniSeats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#10233F; --navy-2:#1D3A63; --navy-3:#2E5288;
+    --gold:#C9A24B; --gold-soft:#E6C77E;
+    --ink:#1C2430; --muted:#5B6472; --bg:#EEF1F7;
+    --card:#FFFFFF; --line:#E4E8EF; --green:#1F7A5A; --tint:#F5F8FD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);}
+  body{font-family:'Tajawal','Cairo','Segoe UI',Tahoma,sans-serif;color:var(--ink);line-height:1.85;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;padding:28px 0;}
+  .page{width:210mm;margin:0 auto;background:var(--card);box-shadow:0 24px 60px rgba(16,35,63,.18);
+    border-radius:14px;overflow:hidden;position:relative;}
+
+  .hero{position:relative;padding:36px 40px 32px;color:#fff;overflow:hidden;
+    background:radial-gradient(1200px 400px at 88% -40%, rgba(201,162,75,.30), transparent 60%),
+      linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(520px 220px at 6% 130%, rgba(255,255,255,.08), transparent 60%);pointer-events:none;}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:2;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{width:60px;height:60px;border-radius:16px;background:linear-gradient(160deg,#fff,#dfe6f2);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:23px;
+    box-shadow:0 8px 20px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.6);font-family:'Cairo',sans-serif;}
+  .brand-txt h1{font-size:21px;font-weight:800;}
+  .brand-txt span{font-size:12.5px;color:#c7d3e6;font-weight:500;}
+  .badge-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    padding:7px 15px;border-radius:999px;font-size:12px;font-weight:600;color:#eaf0fb;}
+  .hero h2{position:relative;z-index:2;margin-top:26px;font-size:29px;font-weight:800;line-height:1.5;}
+  .hero h2 .accent{color:var(--gold-soft);}
+  .hero p.lead{position:relative;z-index:2;margin-top:12px;max-width:660px;color:#d6deec;font-size:14px;}
+  .rule{height:4px;width:100%;background:linear-gradient(90deg,var(--gold) 0%, var(--gold-soft) 40%, transparent 100%);}
+
+  .gallery{padding:26px 40px 8px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;
+    box-shadow:0 5px 16px rgba(16,35,63,.06);break-inside:avoid;}
+  .shot{position:relative;height:150px;background:var(--tint);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;overflow:hidden;}
+  .shot::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--navy-3),var(--navy));}
+  .tile:nth-child(3n) .shot::before{background:linear-gradient(90deg,var(--gold),var(--gold-soft));}
+  .shot .seat{width:66px;height:66px;color:#9aa6b6;opacity:.55;}
+  .shot .no{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:8px;
+    background:linear-gradient(150deg,var(--navy),var(--navy-3));color:#fff;font-family:'Cairo',sans-serif;
+    font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;}
+  .shot .hint{font-size:11.5px;color:var(--muted);font-weight:600;}
+  .meta{padding:11px 14px 13px;}
+  .meta h4{font-size:14px;font-weight:800;color:var(--navy);}
+  .meta .row{display:flex;align-items:center;justify-content:space-between;margin-top:5px;}
+  .meta .type{font-size:11.5px;color:var(--muted);font-weight:600;}
+  .chip{font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:999px;font-family:'Cairo',sans-serif;}
+  .chip.g{background:#E5F3ED;color:var(--green);}
+  .chip.n{background:#E7ECF6;color:var(--navy-2);}
+  .chip.o{background:var(--gold-soft);color:#8a640f;}
+
+  .tipbar{margin:12px 40px 6px;background:var(--tint);border:1px dashed #cdd7e6;border-radius:12px;
+    padding:12px 16px;font-size:12.5px;color:#3c4657;}
+  .tipbar b{color:var(--navy);}
+
+  .footer{display:flex;align-items:center;justify-content:space-between;padding:16px 40px 26px;
+    color:var(--muted);font-size:11.5px;border-top:1px solid var(--line);margin-top:14px;}
+  .footer .k{color:var(--navy);font-weight:700;}
+
+  @page{size:A4;margin:0;}
+  @media print{body{padding:0;background:#fff;}.page{box-shadow:none;border-radius:0;width:auto;}.tile{break-inside:avoid;}}
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="logo">KS</div>
+          <div class="brand-txt"><h1>KeniSeats</h1><span>تنجيد وتخصيص مقاعد السيارات</span></div>
+        </div>
+        <div class="badge-pill">معرض الأعمال</div>
+      </div>
+      <h2>مقاعد أنجزناها <span class="accent">— من إبداع KeniSeats</span></h2>
+      <p class="lead">مجموعة مختارة من أعمالنا المنجزة: تنجيد، تخصيص، وإعادة إحياء لمقاعد السيارات بمختلف أنواعها، بجودة عالية ولمسة احترافية.</p>
+    </header>
+    <div class="rule"></div>
+
+    <section class="gallery">
+      <!-- 1 -->
+      <div class="tile"><div class="shot"><span class="no">1</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>تنجيد سيارة عادية</h4><div class="row"><span class="type">جلد كامل + خياطة</span><span class="chip g">مكتمل</span></div></div></div>
+      <!-- 2 -->
+      <div class="tile"><div class="shot"><span class="no">2</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>سيارة 6 مقاعد</h4><div class="row"><span class="type">تنجيد كامل</span><span class="chip g">مكتمل</span></div></div></div>
+      <!-- 3 -->
+      <div class="tile"><div class="shot"><span class="no">3</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>تخصيص فاخر</h4><div class="row"><span class="type">جلد مميّز</span><span class="chip o">مميّز</span></div></div></div>
+      <!-- 4 -->
+      <div class="tile"><div class="shot"><span class="no">4</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>مقعد دراجة نارية</h4><div class="row"><span class="type">تنجيد مقاوم للماء</span><span class="chip n">إنجاز</span></div></div></div>
+      <!-- 5 -->
+      <div class="tile"><div class="shot"><span class="no">5</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>سجادة أرضية كاملة</h4><div class="row"><span class="type">تفصيل حسب القياس</span><span class="chip g">مكتمل</span></div></div></div>
+      <!-- 6 -->
+      <div class="tile"><div class="shot"><span class="no">6</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>سجاد 3D</h4><div class="row"><span class="type">حماية وأناقة</span><span class="chip o">مميّز</span></div></div></div>
+      <!-- 7 -->
+      <div class="tile"><div class="shot"><span class="no">7</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>مقعد سيارة واحد</h4><div class="row"><span class="type">تجديد سريع</span><span class="chip n">إنجاز</span></div></div></div>
+      <!-- 8 -->
+      <div class="tile"><div class="shot"><span class="no">8</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>سيارة نقل (أمام)</h4><div class="row"><span class="type">تنجيد المقصورة الأمامية</span><span class="chip g">مكتمل</span></div></div></div>
+      <!-- 9 -->
+      <div class="tile"><div class="shot"><span class="no">9</span>
+        <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+        <span class="hint">أدرج الصورة</span></div>
+        <div class="meta"><h4>مقصورة داخلية كاملة</h4><div class="row"><span class="type">تخصيص شامل</span><span class="chip o">مميّز</span></div></div></div>
+    </section>
+
+    <div class="tipbar"><b>ملاحظة:</b> هذا القالب جاهز لصورك — استبدل كل إطار بصورة عمل حقيقي وعدّل العناوين حسب نوع الخدمة. مثالي كـ «Portfolio» للمشاركة مع الزبناء أو على Instagram وFacebook.</div>
+
+    <footer class="footer">
+      <div>معرض الأعمال المنجزة · <span class="k">KeniSeats</span></div>
+      <div>القنيطرة — المغرب</div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>قبل وبعد - تحولات المقاعد | KeniSeats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#10233F; --navy-2:#1D3A63; --navy-3:#2E5288;
+    --gold:#C9A24B; --gold-soft:#E6C77E;
+    --ink:#1C2430; --muted:#5B6472; --bg:#EEF1F7;
+    --card:#FFFFFF; --line:#E4E8EF; --green:#1F7A5A; --tint:#F5F8FD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);}
+  body{font-family:'Tajawal','Cairo','Segoe UI',Tahoma,sans-serif;color:var(--ink);line-height:1.85;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;padding:28px 0;}
+  .page{width:210mm;margin:0 auto;background:var(--card);box-shadow:0 24px 60px rgba(16,35,63,.18);
+    border-radius:14px;overflow:hidden;position:relative;}
+
+  /* Hero */
+  .hero{position:relative;padding:36px 40px 32px;color:#fff;overflow:hidden;
+    background:radial-gradient(1200px 400px at 88% -40%, rgba(201,162,75,.30), transparent 60%),
+      linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(520px 220px at 6% 130%, rgba(255,255,255,.08), transparent 60%);pointer-events:none;}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:2;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{width:60px;height:60px;border-radius:16px;background:linear-gradient(160deg,#fff,#dfe6f2);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:23px;
+    box-shadow:0 8px 20px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.6);font-family:'Cairo',sans-serif;}
+  .brand-txt h1{font-size:21px;font-weight:800;}
+  .brand-txt span{font-size:12.5px;color:#c7d3e6;font-weight:500;}
+  .badge-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    padding:7px 15px;border-radius:999px;font-size:12px;font-weight:600;color:#eaf0fb;}
+  .hero h2{position:relative;z-index:2;margin-top:26px;font-size:29px;font-weight:800;line-height:1.5;}
+  .hero h2 .accent{color:var(--gold-soft);}
+  .hero p.lead{position:relative;z-index:2;margin-top:12px;max-width:660px;color:#d6deec;font-size:14px;}
+  .rule{height:4px;width:100%;background:linear-gradient(90deg,var(--gold) 0%, var(--gold-soft) 40%, transparent 100%);}
+
+  .wrap{padding:26px 40px 8px;}
+
+  /* Featured transformation */
+  .feature{display:grid;grid-template-columns:1fr 64px 1fr;gap:0;align-items:stretch;margin-bottom:26px;}
+  .frame{position:relative;border-radius:16px;overflow:hidden;border:2px dashed #cfd8e6;background:var(--tint);
+    min-height:230px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;}
+  .frame.after{border-style:solid;border-color:var(--gold);background:linear-gradient(160deg,#fffdf7,#f6f2e6);}
+  .frame .seat{width:96px;height:96px;opacity:.5;}
+  .frame.before .seat{color:#7f8a9c;} .frame.after .seat{color:var(--gold);opacity:.65;}
+  .frame .hint{font-size:12px;color:var(--muted);font-weight:600;}
+  .tag{position:absolute;top:12px;right:12px;padding:5px 14px;border-radius:999px;font-size:12.5px;font-weight:800;color:#fff;font-family:'Cairo',sans-serif;}
+  .tag.b{background:linear-gradient(150deg,#5b6675,#39424f);}
+  .tag.a{background:linear-gradient(150deg,var(--gold),#b9872f);}
+  .arrow{display:flex;align-items:center;justify-content:center;}
+  .arrow .circle{width:52px;height:52px;border-radius:50%;background:linear-gradient(150deg,var(--navy),var(--navy-3));
+    color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(16,35,63,.3), 0 0 0 6px #fff;}
+  .arrow svg{width:24px;height:24px;}
+  .cap{margin-top:12px;text-align:center;}
+  .cap h3{font-size:18px;font-weight:800;color:var(--navy);}
+  .cap p{font-size:13px;color:var(--muted);}
+
+  /* smaller pairs */
+  .pairs{display:grid;grid-template-columns:1fr;gap:16px;}
+  .pair{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;
+    box-shadow:0 5px 16px rgba(16,35,63,.06);break-inside:avoid;}
+  .pair-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:0;align-items:stretch;}
+  .pair .frame{min-height:150px;}
+  .pair .seat{width:64px;height:64px;}
+  .pair-cap{display:flex;align-items:center;gap:10px;margin-top:12px;}
+  .pair-cap .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,162,75,.18);}
+  .pair-cap b{color:var(--navy);font-weight:800;font-size:14.5px;}
+  .pair-cap span{color:var(--muted);font-size:12.5px;}
+
+  .tipbar{margin:8px 40px 6px;background:var(--tint);border:1px dashed #cdd7e6;border-radius:12px;
+    padding:12px 16px;font-size:12.5px;color:#3c4657;}
+  .tipbar b{color:var(--navy);}
+
+  .footer{display:flex;align-items:center;justify-content:space-between;padding:16px 40px 26px;
+    color:var(--muted);font-size:11.5px;border-top:1px solid var(--line);margin-top:14px;}
+  .footer .k{color:var(--navy);font-weight:700;}
+
+  @page{size:A4;margin:0;}
+  @media print{body{padding:0;background:#fff;}.page{box-shadow:none;border-radius:0;width:auto;}.pair{break-inside:avoid;}}
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="logo">KS</div>
+          <div class="brand-txt"><h1>KeniSeats</h1><span>تنجيد وتخصيص مقاعد السيارات</span></div>
+        </div>
+        <div class="badge-pill">قبل &amp; بعد</div>
+      </div>
+      <h2>تحوّلات المقاعد <span class="accent">— قبل وبعد</span></h2>
+      <p class="lead">من الاهتراء والبهتان إلى مقاعد كأنها جديدة. هنا نعرض الفرق الحقيقي الذي يصنعه الإتقان في تنجيد وتخصيص مقاعد السيارات مع KeniSeats.</p>
+    </header>
+    <div class="rule"></div>
+
+    <div class="wrap">
+      <!-- Featured -->
+      <div class="feature">
+        <div class="frame before">
+          <span class="tag b">قبل</span>
+          <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/><path d="M46 22h4c2 0 3 1 3 3v10"/></svg>
+          <span class="hint">أدرج صورة "قبل" هنا</span>
+        </div>
+        <div class="arrow">
+          <div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H4"/><path d="M11 5l-7 7 7 7"/></svg></div>
+        </div>
+        <div class="frame after">
+          <span class="tag a">بعد</span>
+          <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/><path d="M46 22h4c2 0 3 1 3 3v10"/></svg>
+          <span class="hint">أدرج صورة "بعد" هنا</span>
+        </div>
+      </div>
+      <div class="cap">
+        <h3>تنجيد كامل للمقصورة الداخلية</h3>
+        <p>استعادة كاملة للمظهر والراحة — جلد مُعاد بالكامل، خياطة دقيقة، ولمسة فاخرة.</p>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding-top:6px;">
+      <div class="pairs">
+        <div class="pair">
+          <div class="pair-grid">
+            <div class="frame before"><span class="tag b">قبل</span>
+              <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+              <span class="hint">صورة قبل</span></div>
+            <div class="arrow"><div class="circle" style="width:40px;height:40px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H4"/><path d="M11 5l-7 7 7 7"/></svg></div></div>
+            <div class="frame after"><span class="tag a">بعد</span>
+              <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+              <span class="hint">صورة بعد</span></div>
+          </div>
+          <div class="pair-cap"><span class="dot"></span><b>مقعد سيارة عادية</b><span>— تجديد الجلد وإصلاح الحشو والخياطة.</span></div>
+        </div>
+
+        <div class="pair">
+          <div class="pair-grid">
+            <div class="frame before"><span class="tag b">قبل</span>
+              <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+              <span class="hint">صورة قبل</span></div>
+            <div class="arrow"><div class="circle" style="width:40px;height:40px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H4"/><path d="M11 5l-7 7 7 7"/></svg></div></div>
+            <div class="frame after"><span class="tag a">بعد</span>
+              <svg class="seat" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10c0-3 2-5 5-5h6c3 0 5 2 5 5v22H18z"/><path d="M14 34c0-2 2-4 4-4h20c2 0 4 2 4 4v10H14z"/><path d="M14 44v9M42 44v9"/></svg>
+              <span class="hint">صورة بعد</span></div>
+          </div>
+          <div class="pair-cap"><span class="dot"></span><b>تخصيص فاخر للمقصورة</b><span>— جلد مميز مع خياطة مزدوجة اللون.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tipbar"><b>ملاحظة:</b> هذا القالب جاهز لصورك — استبدل كل إطار "قبل / بعد" بصورك الحقيقية للحصول على عرض احترافي قابل للطباعة أو المشاركة على مواقع التواصل.</div>
+
+    <footer class="footer">
+      <div>معرض التحوّلات · <span class="k">KeniSeats</span></div>
+      <div>القنيطرة — المغرب</div>
+    </footer>
+  </div>
+</body>
+</html>
