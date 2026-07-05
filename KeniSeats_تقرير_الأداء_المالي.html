@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ملخص الأداء المالي الشهري - مشروع KeniSeats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#10233F;
+    --navy-2:#1D3A63;
+    --navy-3:#2E5288;
+    --gold:#C9A24B;
+    --gold-soft:#E6C77E;
+    --ink:#1C2430;
+    --muted:#5B6472;
+    --bg:#EEF1F7;
+    --card:#FFFFFF;
+    --line:#E4E8EF;
+    --green:#1F7A5A;
+    --tint:#F5F8FD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);}
+  body{
+    font-family:'Tajawal','Cairo','Segoe UI',Tahoma,sans-serif;
+    color:var(--ink);
+    line-height:1.85;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    padding:28px 0;
+  }
+  .page{
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto;
+    background:var(--card);
+    box-shadow:0 24px 60px rgba(16,35,63,.18);
+    border-radius:14px;
+    overflow:hidden;
+    position:relative;
+  }
+
+  /* ===== Header ===== */
+  .hero{
+    position:relative;
+    padding:34px 40px 30px;
+    background:
+      radial-gradient(1200px 400px at 88% -40%, rgba(201,162,75,.28), transparent 60%),
+      linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);
+    color:#fff;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(520px 220px at 6% 130%, rgba(255,255,255,.08), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:2;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{
+    width:58px;height:58px;border-radius:15px;
+    background:linear-gradient(160deg,#fff, #dfe6f2);
+    color:var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:22px;letter-spacing:.5px;
+    box-shadow:0 8px 20px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.6);
+    font-family:'Cairo',sans-serif;
+  }
+  .brand-txt h1{font-size:20px;font-weight:800;letter-spacing:.3px;}
+  .brand-txt span{font-size:12.5px;color:#c7d3e6;font-weight:500;}
+  .badge-pill{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.22);
+    padding:7px 15px;border-radius:999px;font-size:12px;font-weight:600;color:#eaf0fb;
+    backdrop-filter:blur(4px);
+  }
+  .hero h2{
+    position:relative;z-index:2;
+    margin-top:24px;font-size:27px;font-weight:800;line-height:1.5;
+  }
+  .hero h2 .accent{color:var(--gold-soft);}
+  .hero p.lead{
+    position:relative;z-index:2;
+    margin-top:12px;max-width:640px;color:#d6deec;font-size:14px;font-weight:400;
+  }
+  .rule{height:4px;width:100%;background:linear-gradient(90deg,var(--gold) 0%, var(--gold-soft) 40%, transparent 100%);}
+
+  /* ===== KPI cards ===== */
+  .kpis{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    padding:26px 40px 6px;
+  }
+  .kpi{
+    background:var(--tint);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 16px 15px;
+    position:relative;
+    overflow:hidden;
+  }
+  .kpi::before{content:"";position:absolute;top:0;right:0;width:100%;height:3px;
+    background:linear-gradient(90deg,var(--navy-3),var(--navy));}
+  .kpi.good::before{background:linear-gradient(90deg,var(--green),#3fae86);}
+  .kpi.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold-soft));}
+  .kpi .label{font-size:12px;color:var(--muted);font-weight:600;}
+  .kpi .value{font-size:23px;font-weight:800;color:var(--navy);margin-top:6px;font-family:'Cairo',sans-serif;}
+  .kpi .unit{font-size:12px;color:var(--muted);font-weight:600;}
+  .kpi.good .value{color:var(--green);}
+  .kpi.gold .value{color:#a97f22;}
+
+  /* ===== Sections ===== */
+  .body{padding:20px 40px 8px;}
+  .section{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 22px 8px;
+    margin-bottom:16px;
+    box-shadow:0 4px 14px rgba(16,35,63,.05);
+    break-inside:avoid;
+  }
+  .sec-head{display:flex;align-items:center;gap:13px;margin-bottom:10px;}
+  .sec-num{
+    width:38px;height:38px;flex:0 0 38px;border-radius:11px;
+    background:linear-gradient(150deg,var(--navy),var(--navy-3));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:18px;font-family:'Cairo',sans-serif;
+    box-shadow:0 6px 14px rgba(16,35,63,.28);
+  }
+  .sec-head h3{font-size:17.5px;font-weight:800;color:var(--navy);}
+  .sec-head .en{font-size:12.5px;color:var(--muted);font-weight:600;}
+  ul.facts{list-style:none;margin:4px 0 10px;}
+  ul.facts li{
+    position:relative;padding:7px 20px 7px 0;font-size:14px;border-bottom:1px dashed #eef1f6;
+  }
+  ul.facts li:last-child{border-bottom:none;}
+  ul.facts li::before{
+    content:"";position:absolute;right:4px;top:15px;
+    width:8px;height:8px;border-radius:50%;
+    background:var(--gold);box-shadow:0 0 0 3px rgba(201,162,75,.18);
+  }
+  ul.facts li b{color:var(--navy);font-weight:700;}
+  .num{font-family:'Cairo',sans-serif;font-weight:700;color:var(--navy-2);}
+  .note{
+    background:var(--tint);border-right:3px solid var(--navy-3);
+    border-radius:8px;padding:10px 14px;font-size:13.5px;color:#3c4657;margin:2px 0 12px;
+  }
+  .note b{color:var(--navy);}
+
+  /* ===== Summary ===== */
+  .summary{
+    margin:6px 40px 8px;
+    border-radius:16px;
+    padding:24px 26px;
+    color:#eef2f9;
+    background:
+      radial-gradient(600px 240px at 92% -20%, rgba(201,162,75,.30), transparent 60%),
+      linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 100%);
+    position:relative;overflow:hidden;break-inside:avoid;
+  }
+  .summary h3{color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .summary h3 .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,162,75,.25);}
+  .summary p{font-size:14px;margin-bottom:10px;color:#dbe3f0;}
+  .summary .ops{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    border-radius:10px;padding:12px 15px;font-size:13.5px;color:#eaf0fb;
+  }
+  .summary .ops b{color:var(--gold-soft);}
+  .summary strong{color:#fff;}
+
+  /* ===== Footer ===== */
+  .footer{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 40px 26px;color:var(--muted);font-size:11.5px;border-top:1px solid var(--line);margin-top:12px;
+  }
+  .footer .k{color:var(--navy);font-weight:700;}
+
+  @page{size:A4;margin:0;}
+  @media print{
+    body{padding:0;background:#fff;}
+    .page{box-shadow:none;border-radius:0;width:auto;min-height:auto;}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="logo">KS</div>
+          <div class="brand-txt">
+            <h1>KeniSeats</h1>
+            <span>تنجيد وتجهيز مقاعد السيارات</span>
+          </div>
+        </div>
+        <div class="badge-pill">تقرير مالي شهري</div>
+      </div>
+      <h2>ملخص الأداء المالي الشهري <span class="accent">— مشروع KeniSeats</span></h2>
+      <p class="lead">يقدّم هذا التقرير نظرة مبسّطة وواضحة على الهيكل المالي للمشروع، موضحاً حجم الإيرادات، توزيع التكاليف، ومؤشرات الربحية ونقطة التعادل.</p>
+    </header>
+    <div class="rule"></div>
+
+    <!-- KPI CARDS -->
+    <section class="kpis">
+      <div class="kpi">
+        <div class="label">إجمالي المداخيل الشهرية</div>
+        <div class="value">14,850</div>
+        <div class="unit">درهم</div>
+      </div>
+      <div class="kpi">
+        <div class="label">إجمالي التكاليف الشهرية</div>
+        <div class="value">9,850</div>
+        <div class="unit">درهم</div>
+      </div>
+      <div class="kpi good">
+        <div class="label">صافي الربح الشهري</div>
+        <div class="value">5,000</div>
+        <div class="unit">درهم</div>
+      </div>
+      <div class="kpi gold">
+        <div class="label">هامش الربح الصافي</div>
+        <div class="value">33.6٪</div>
+        <div class="unit">من إجمالي المداخيل</div>
+      </div>
+    </section>
+
+    <!-- SECTIONS -->
+    <main class="body">
+      <section class="section">
+        <div class="sec-head">
+          <div class="sec-num">1</div>
+          <div>
+            <h3>المؤشرات المالية الأساسية</h3>
+            <div class="en">Key Financial Indicators</div>
+          </div>
+        </div>
+        <ul class="facts">
+          <li><b>إجمالي المداخيل الشهرية:</b> <span class="num">14,850</span> درهم.</li>
+          <li><b>إجمالي التكاليف الشهرية:</b> <span class="num">9,850</span> درهم.</li>
+          <li><b>التكاليف الثابتة:</b> <span class="num">7,320</span> درهم (تشمل الإيجار، الراتب، الماء والكهرباء، الاتصالات، والتنظيف).</li>
+          <li><b>التكاليف المتغيرة (المواد الخام):</b> <span class="num">2,530</span> درهم.</li>
+          <li><b>صافي الربح الشهري:</b> <span class="num">5,000</span> درهم.</li>
+          <li><b>هامش الربح الصافي:</b> <span class="num">33.6٪</span> — أي أن المشروع يحتفظ بـ <span class="num">33.6</span> درهم كربح صافٍ من كل <span class="num">100</span> درهم يتم تحصيلها من الزبناء.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="sec-head">
+          <div class="sec-num">2</div>
+          <div>
+            <h3>تحليل نقطة التعادل</h3>
+            <div class="en">Break-Even Point</div>
+          </div>
+        </div>
+        <ul class="facts">
+          <li><b>نقطة التعادل (عدد الطلبات):</b> <span class="num">6</span> طلبات شهرياً.</li>
+          <li><b>نقطة التعادل (حجم المبيعات):</b> <span class="num">8,910</span> درهم.</li>
+        </ul>
+        <div class="note"><b>الدلالة الاقتصادية:</b> يحتاج المشروع إلى إنجاز <b>6 طلبات فقط</b> (أو تحقيق مداخيل بقيمة 8,910 درهم) لتغطية كافة المصاريف الثابتة والمتغيرة. أي طلب يتم إنجازه بعد الطلب السادس يُعتبر ربحاً صافياً يُضاف إلى خزينة المشروع.</div>
+      </section>
+
+      <section class="section">
+        <div class="sec-head">
+          <div class="sec-num">3</div>
+          <div>
+            <h3>مؤشر الأمان المالي</h3>
+            <div class="en">Margin of Safety</div>
+          </div>
+        </div>
+        <ul class="facts">
+          <li><b>هامش الأمان:</b> <span class="num">40٪</span>.</li>
+        </ul>
+        <div class="note"><b>الدلالة:</b> يتمتع المشروع بمرونة مالية عالية جداً؛ حيث يمكن أن تتراجع المداخيل أو ينخفض عدد الطلبات بنسبة تصل إلى <b>40٪</b> (أي أن يُنجز المشروع 6 طلبات فقط بدلاً من 10) دون أن يتأثر سلباً أو يدخل في دائرة الخسارة.</div>
+      </section>
+
+      <section class="section">
+        <div class="sec-head">
+          <div class="sec-num">4</div>
+          <div>
+            <h3>كفاءة العمليات ومتوسطات الأداء</h3>
+            <div class="en">Operational Efficiency & Averages</div>
+          </div>
+        </div>
+        <ul class="facts">
+          <li><b>متوسط سعر الطلب الواحد:</b> <span class="num">1,485</span> درهم.</li>
+          <li><b>متوسط تكلفة المواد للطلب الواحد:</b> <span class="num">253</span> درهم.</li>
+          <li><b>هامش المساهمة (الربح الخام) للطلب الواحد:</b> <span class="num">1,232</span> درهم.</li>
+        </ul>
+        <div class="note"><b>الدلالة:</b> كل عملية يتم إنجازها تساهم بـ <b>1,232 درهم</b> لسداد المصاريف الثابتة (الإيجار والراتب). وبما أن المصاريف الثابتة تُغطّى بالكامل بعد 6 طلبات، فإن هذا المبلغ يتحول بالكامل إلى ربح صافٍ في الطلبات المتبقية.</div>
+      </section>
+    </main>
+
+    <!-- SUMMARY -->
+    <section class="summary">
+      <h3><span class="dot"></span> الخلاصة العامة</h3>
+      <p>يُظهر المشروع <strong>صحة مالية ممتازة</strong> وهوامش ربح قوية. الهيكل المالي الحالي يسمح بتغطية كافة المصاريف التشغيلية والشخصية وتحقيق فائض ربحي يصل إلى <strong>5,000 درهم شهرياً</strong>، مع وجود هامش أمان واسع (<strong>40٪</strong>) يقي من تقلبات السوق الموسمية.</p>
+      <div class="ops"><b>ملاحظة تشغيلية:</b> بما أن كل طلب يدرّ ربحاً خاماً عالياً (1,232 درهم)، فإن التركيز المستقبلي على الخدمات ذات القيمة المرتفعة (مثل تنجيد السيارات ذات 6 مقاعد والتي تدرّ 2,600 درهم) سيعزز من هذا الأداء ويقلل من الجهد والوقت المبذول لتحقيق نفس مستوى الأرباح.</div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div>تقرير أُعدّ لأغراض تحليل الأداء المالي · <span class="k">KeniSeats</span></div>
+      <div>العملة: الدرهم المغربي (MAD)</div>
+    </footer>
+  </div>
+</body>
+</html>
