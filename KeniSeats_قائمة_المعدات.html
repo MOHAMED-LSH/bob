@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>قائمة التجهيزات والمعدات | KeniSeats</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#10233F; --navy-2:#1D3A63; --navy-3:#2E5288;
+    --gold:#C9A24B; --gold-soft:#E6C77E;
+    --ink:#1C2430; --muted:#5B6472; --bg:#EEF1F7;
+    --card:#FFFFFF; --line:#E4E8EF; --green:#1F7A5A; --tint:#F5F8FD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);}
+  body{font-family:'Tajawal','Cairo','Segoe UI',Tahoma,sans-serif;color:var(--ink);line-height:1.8;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;padding:28px 0;}
+  .page{width:210mm;margin:0 auto;background:var(--card);box-shadow:0 24px 60px rgba(16,35,63,.18);
+    border-radius:14px;overflow:hidden;position:relative;}
+
+  /* Hero */
+  .hero{position:relative;padding:34px 40px 30px;color:#fff;overflow:hidden;
+    background:radial-gradient(1200px 400px at 88% -40%, rgba(201,162,75,.30), transparent 60%),
+      linear-gradient(135deg,var(--navy) 0%, var(--navy-2) 55%, var(--navy-3) 100%);}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:radial-gradient(520px 220px at 6% 130%, rgba(255,255,255,.08), transparent 60%);pointer-events:none;}
+  .hero-top{display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:2;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .logo{width:58px;height:58px;border-radius:15px;background:linear-gradient(160deg,#fff,#dfe6f2);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.6);font-family:'Cairo',sans-serif;}
+  .brand-txt h1{font-size:20px;font-weight:800;}
+  .brand-txt span{font-size:12.5px;color:#c7d3e6;font-weight:500;}
+  .badge-pill{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);
+    padding:7px 15px;border-radius:999px;font-size:12px;font-weight:600;color:#eaf0fb;}
+  .hero h2{position:relative;z-index:2;margin-top:22px;font-size:27px;font-weight:800;line-height:1.5;}
+  .hero h2 .accent{color:var(--gold-soft);}
+  .hero p.lead{position:relative;z-index:2;margin-top:11px;max-width:660px;color:#d6deec;font-size:13.5px;}
+  .rule{height:4px;width:100%;background:linear-gradient(90deg,var(--gold) 0%, var(--gold-soft) 40%, transparent 100%);}
+
+  /* Summary */
+  .summary{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;padding:24px 40px 8px;}
+  .sc{background:var(--tint);border:1px solid var(--line);border-radius:14px;padding:15px 18px;position:relative;overflow:hidden;}
+  .sc::before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,var(--navy-3),var(--navy));}
+  .sc.gold::before{background:linear-gradient(90deg,var(--gold),var(--gold-soft));}
+  .sc .l{font-size:12px;color:var(--muted);font-weight:600;}
+  .sc .v{font-family:'Cairo',sans-serif;font-weight:800;color:var(--navy);margin-top:4px;}
+  .sc.big .v{font-size:30px;color:#a97f22;}
+  .sc .v.mid{font-size:24px;}
+  .sc .v small{font-size:13px;color:var(--muted);font-weight:600;}
+
+  /* Equipment list */
+  .list{padding:16px 40px 8px;display:grid;gap:13px;}
+  .equip{display:grid;grid-template-columns:44px 52px 1fr auto;gap:15px;align-items:center;
+    background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px 18px;
+    box-shadow:0 4px 14px rgba(16,35,63,.05);break-inside:avoid;position:relative;}
+  .equip::before{content:"";position:absolute;top:14px;bottom:14px;right:0;width:4px;border-radius:4px;
+    background:linear-gradient(var(--gold),var(--gold-soft));}
+  .eq-num{width:44px;height:44px;border-radius:12px;background:linear-gradient(150deg,var(--navy),var(--navy-3));
+    color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;
+    font-weight:800;font-size:19px;box-shadow:0 6px 14px rgba(16,35,63,.25);}
+  .eq-icon{width:52px;height:52px;border-radius:13px;background:var(--tint);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;}
+  .eq-icon svg{width:28px;height:28px;color:var(--navy-2);}
+  .eq-main h3{font-size:16px;font-weight:800;color:var(--navy);}
+  .eq-main .en{font-size:11.5px;color:var(--muted);font-weight:600;margin-bottom:5px;}
+  .eq-main .spec{display:inline-block;background:#EAF0F8;color:var(--navy-2);font-size:10.5px;font-weight:700;
+    padding:2px 9px;border-radius:999px;margin:0 0 5px;font-family:'Cairo',sans-serif;}
+  .eq-main p{font-size:12.8px;color:#3c4657;line-height:1.7;}
+  .eq-main p b{color:var(--navy);font-weight:800;}
+  .eq-price{text-align:center;min-width:96px;background:linear-gradient(150deg,var(--navy),var(--navy-2));
+    color:#fff;border-radius:12px;padding:10px 12px;}
+  .eq-price .amt{font-family:'Cairo',sans-serif;font-weight:800;font-size:18px;}
+  .eq-price small{display:block;font-size:10.5px;color:var(--gold-soft);font-weight:700;}
+
+  /* Total */
+  .total{margin:8px 40px 6px;border-radius:16px;padding:18px 24px;display:flex;align-items:center;
+    justify-content:space-between;color:#fff;position:relative;overflow:hidden;break-inside:avoid;
+    background:radial-gradient(500px 200px at 90% -40%, rgba(201,162,75,.35), transparent 60%),
+      linear-gradient(135deg,var(--navy),var(--navy-2));}
+  .total .lbl{font-size:15px;font-weight:700;color:#dbe3f0;}
+  .total .lbl b{color:#fff;font-weight:800;font-size:17px;display:block;}
+  .total .amt{font-family:'Cairo',sans-serif;font-weight:800;font-size:32px;color:var(--gold-soft);}
+  .total .amt small{font-size:15px;color:#c7d3e6;font-weight:600;}
+
+  .note{margin:2px 40px 8px;font-size:11.5px;color:var(--muted);}
+  .footer{display:flex;align-items:center;justify-content:space-between;padding:16px 40px 26px;
+    color:var(--muted);font-size:11.5px;border-top:1px solid var(--line);margin-top:12px;}
+  .footer .k{color:var(--navy);font-weight:700;}
+
+  @page{size:A4;margin:0;}
+  @media print{body{padding:0;background:#fff;}.page{box-shadow:none;border-radius:0;width:auto;}.equip{break-inside:avoid;}}
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-top">
+        <div class="brand">
+          <div class="logo">KS</div>
+          <div class="brand-txt"><h1>KeniSeats</h1><span>تنجيد وتخصيص مقاعد السيارات</span></div>
+        </div>
+        <div class="badge-pill">قائمة التجهيزات</div>
+      </div>
+      <h2>التجهيزات والمعدات <span class="accent">— قائمة الاستثمار</span></h2>
+      <p class="lead">لائحة كاملة بالآلات والمعدات الأساسية اللازمة لتجهيز الورشة، مع أقرب سعر في السوق والغرض من كل آلة في خط إنتاج تنجيد وتخصيص مقاعد السيارات.</p>
+    </header>
+    <div class="rule"></div>
+
+    <!-- Summary -->
+    <section class="summary">
+      <div class="sc gold big"><div class="l">إجمالي الاستثمار في المعدات</div><div class="v">89,999 <small>درهم</small></div></div>
+      <div class="sc"><div class="l">عدد الآلات</div><div class="v mid">7 <small>معدات</small></div></div>
+      <div class="sc"><div class="l">أغلى آلة</div><div class="v mid">55,000 <small>درهم</small></div></div>
+    </section>
+
+    <!-- List -->
+    <section class="list">
+      <!-- 1 Embroidery -->
+      <div class="equip">
+        <div class="eq-num">1</div>
+        <div class="eq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l7-7"/><circle cx="16" cy="8" r="3"/><path d="M18.5 5.5L21 3"/><path d="M11 13l-2 .5.5-2"/><path d="M14 8h4"/></svg></div>
+        <div class="eq-main">
+          <h3>آلة الطرز (رأس واحد)</h3>
+          <div class="en">Single-Head Embroidery Machine · آلة طرز رأس واحد</div>
+          <span class="spec">مجال الطرز 500×800 · 80/50</span>
+          <p><b>الغرض:</b> طرز الشعارات والتصاميم المخصّصة والكتابة على أغطية المقاعد ومساند الرأس والأقمشة الداخلية — تضيف لمسة فاخرة وتُعزّز العلامة التجارية وتفتح باب خدمات التخصيص الراقية.</p>
+        </div>
+        <div class="eq-price"><div class="amt">55,000</div><small>درهم</small></div>
+      </div>
+
+      <!-- 2 Overlock / tapis -->
+      <div class="equip">
+        <div class="eq-num">2</div>
+        <div class="eq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 10v8M11 10v8"/><path d="M15 14l2 2 2-2"/></svg></div>
+        <div class="eq-main">
+          <h3>آلة السجاد والسرفلة</h3>
+          <div class="en">Overlock / Carpet Finishing Machine</div>
+          <p><b>الغرض:</b> تصنيع وتشطيب سجّاد وموكيت السيارات، وسرفلة حواف الأقمشة والسجاد لمنع تنسّلها ومنحها تشطيباً احترافياً نظيفاً ومتيناً.</p>
+        </div>
+        <div class="eq-price"><div class="amt">11,000</div><small>درهم</small></div>
+      </div>
+
+      <!-- 3 Work table -->
+      <div class="equip">
+        <div class="eq-num">3</div>
+        <div class="eq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18"/><path d="M4 8v11M20 8v11M4 8V6h16v2"/></svg></div>
+        <div class="eq-main">
+          <h3>طاولة العمل</h3>
+          <div class="en">Work Table · 600 × 120 cm</div>
+          <span class="spec">600 × 120 سم</span>
+          <p><b>الغرض:</b> مساحة عمل واسعة ومتينة للقص والقياس، تخطيط الجلد والقماش، وتجميع القطع والمقاعد أثناء الإنجاز بشكل منظّم ومريح.</p>
+        </div>
+        <div class="eq-price"><div class="amt">2,000</div><small>درهم</small></div>
+      </div>
+
+      <!-- 4 Compressor -->
+      <div class="equip">
+        <div class="eq-num">4</div>
+        <div class="eq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="12" height="10" rx="3"/><path d="M8 18v2M12 18v2"/><circle cx="10" cy="6" r="1.6"/><path d="M16 11h3v5M19 11l2-2"/></svg></div>
+        <div class="eq-main">
+          <h3>ضاغط الهواء (كومبريسور)</h3>
+          <div class="en">50L Air Compressor · 2.2 kW (3HP) · 8 bar</div>
+          <span class="spec">خزان 50 لتر · 220–240V</span>
+          <p><b>الغرض:</b> تشغيل الأدوات الهوائية مثل مسدس الدبابيس (Staple Gun) لتثبيت الجلد والقماش على هياكل المقاعد، إضافةً إلى نفخ الهواء وتنظيف الغبار من المقاعد والأقمشة.</p>
+        </div>
+        <div class="eq-price"><div class="amt">5,999</div><small>درهم</small></div>
+      </div>
+
+      <!-- 5 Ultrasonic welder -->
+      <div class="equip">
+        <div class="eq-num">5</div>
+        <div class="eq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M7 11h4M7 13.5h4"/><path d="M17 8c1.5 1.5 1.5 6.5 0 8M19.5 6c2.5 2.5 2.5 9.5 0 12"/></svg></div>
+        <div class="eq-main">
+          <h3>آلة اللحام بالموجات فوق الصوتية</h3>
+          <div class="en">Ultrasonic Spot Welding Machine</div>
+          <span class="spec">ABS · PP · PVC · أقمشة منسوجة</span>
+          <p><b>الغرض:</b> لحام وربط المواد الاصطناعية والأقمشة المنسوجة دون خيوط — لإنشاء وصلات وتصاميم تزيينية (Quilting) نظيفة وقوية على الجلد الصناعي وأقمشة السيارات.</p>
+        </div>
+        <div class="eq-price"><div class="amt">3,500</div><small>درهم</small></div>
+      </div>
+
+      <!-- 6 Long-arm sewing -->
+      <div class="equip">
+        <div class="eq-num">6</div>
+        <div class="eq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16h15a2 2 0 002-2V8"/><path d="M3 16v3h17"/><path d="M6 8V6h9v2"/><path d="M17 11v3"/></svg></div>
+        <div class="eq-main">
+          <h3>آلة خياطة ذراع طويل</h3>
+          <div class="en">Long-Arm Sewing Machine · آلة خياطة ذراع طويل</div>
+          <p><b>الغرض:</b> خياطة القطع الكبيرة من التنجيد بسهولة؛ الذراع الطويل يتيح التعامل مع أغطية المقاعد الضخمة والألواح القماشية الكبيرة بدقّة وسرعة.</p>
+        </div>
+        <div class="eq-price"><div class="amt">4,500</div><small>درهم</small></div>
+      </div>
+
+      <!-- 7 Post-bed leather sewing -->
+      <div class="equip">
+        <div class="eq-num">7</div>
+        <div class="eq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17h13a2 2 0 002-2V7"/><path d="M11 17v3M8 20h6"/><path d="M7 7V5h8v2"/><path d="M19 10v3"/></svg></div>
+        <div class="eq-main">
+          <h3>آلة خياطة الجلد بقاعدة عمودية</h3>
+          <div class="en">Post-Bed Leather Sewing Machine · 2000 rpm</div>
+          <span class="spec">للجلد السميك والزوايا المجسّمة</span>
+          <p><b>الغرض:</b> مخصّصة لخياطة الجلد السميك والأشكال المجسّمة والزوايا الصعبة (انحناءات وزوايا المقاعد)؛ تصميم القاعدة العمودية مثالي للخياطة حول المنحنيات والأركان.</p>
+        </div>
+        <div class="eq-price"><div class="amt">8,000</div><small>درهم</small></div>
+      </div>
+    </section>
+
+    <!-- Total -->
+    <div class="total">
+      <div class="lbl">إجمالي تكلفة التجهيز<b>Total Equipment Investment</b></div>
+      <div class="amt">89,999 <small>درهم</small></div>
+    </div>
+    <div class="note">* الأسعار تقديرية وتمثّل أقرب سعر في السوق وقد تختلف حسب المورّد والعروض المتاحة.</div>
+
+    <footer class="footer">
+      <div>قائمة التجهيزات والمعدات · <span class="k">KeniSeats</span></div>
+      <div>القنيطرة — المغرب · العملة: الدرهم المغربي (MAD)</div>
+    </footer>
+  </div>
+</body>
+</html>
